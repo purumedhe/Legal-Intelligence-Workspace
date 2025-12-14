@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal Assistant – Premium Prototype</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Premium Neutral Theme (No Blue) */
+      --bg: #0f1113;
+      --panel: #171a1d;
+      --panel-soft: #1e2226;
+      --text: #e7e7e7;
+      --muted: #a1a1a1;
+      --accent: #c9b27c;      /* muted gold / champagne */
+      --border: #2a2f34;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ---------- Layout ---------- */
+    .app {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 24px 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .brand {
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      font-size: 18px;
+    }
+
+    .tag {
+      font-size: 12px;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+
+    /* ---------- Input Panel ---------- */
+    .editor {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .editor:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .editor h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .editor p {
+      color: var(--muted);
+      margin: 0 0 20px;
+      font-size: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      resize: none;
+      background: var(--panel-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.2s ease, transform 0.2s ease;
+    }
+
+    textarea:focus {
+      border-color: var(--accent);
+      transform: scale(1.01);
+    }
+
+    /* ---------- Controls ---------- */
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    select, button {
+      background: var(--panel-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    select:hover, button:hover {
+      transform: scale(1.04);
+      border-color: var(--accent);
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 500;
+      background: linear-gradient(135deg, #1f2327, #15181b);
+    }
+
+    button.primary {
+      background: linear-gradient(135deg, var(--accent), #9f8a58);
+      color: #0f1113;
+      border: none;
+    }
+
+    /* ---------- Output Section ---------- */
+    .results {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .card p, .card li {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 8px 0 0;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ---------- Small Devices ---------- */
+    @media (max-width: 600px) {
+      .editor h1 { font-size: 20px; }
+      textarea { min-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app">
+
+    <header>
+      <div class="brand">Legal Intelligence Workspace</div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end;">
+        <div style="font-size:18px; font-weight:600; opacity:0.85; letter-spacing:0.6px; margin-bottom:6px;">PM</div>
+        <div class="tag">India • Laws • AI‑Assisted</div>
+      </div>
+    </header>
+
+    <!-- INPUT / NOTEPAD -->
+    <section class="editor">
+      <h1>Case Notepad</h1>
+      <p>Describe the case briefly (max two sentences). Select filters to narrow legal accuracy.</p>
+
+      <textarea placeholder="Example: A person intentionally caused the death of another individual due to personal enmity."></textarea>
+
+      <div class="controls">
+        <select>
+          <option>Case Category</option>
+          <option>Criminal</option>
+          <option>Civil</option>
+          <option>Family / Domestic</option>
+          <option>Commercial</option>
+        </select>
+
+        <select>
+          <option>Offence Type</option>
+          <option>Murder</option>
+          <option>Theft</option>
+          <option>Fraud</option>
+          <option>Assault</option>
+        </select>
+
+        <button class="primary">Analyze Case</button>
+        <button>Reset</button>
+      </div>
+    </section>
+
+    <!-- OUTPUTS (5 CORE OUTPUTS) -->
+    <section class="results">
+
+      <div class="card">
+        <h3>1. Applicable Legal Sections</h3>
+        <ul>
+          <li>IPC Section 302 – Punishment for Murder</li>
+          <li>IPC Section 34 – Common Intention</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>2. Punishment / Sentence Range</h3>
+        <p>Death penalty or life imprisonment, along with fine, subject to judicial discretion.</p>
+      </div>
+
+      <div class="card">
+        <h3>3. Court Presentation Strategy</h3>
+        <p>Emphasize intent (mens rea), forensic consistency, and motive linkage. Maintain chronological narrative clarity.</p>
+      </div>
+
+      <div class="card">
+        <h3>4. Relevant Case Precedents</h3>
+        <ul>
+          <li>Bachan Singh v. State of Punjab</li>
+          <li>Machhi Singh v. State of Punjab</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>5. Court‑Ready Documentation</h3>
+        <p>Auto‑generated brief with headings, facts, legal grounds, and prayer clause (PDF export ready).</p>
+      </div>
+
+    </section>
+
+    <footer>
+      Prototype • Government Law Sources • Cloud Ready • Built for Lawyers<br/>© Purushottam Medhe
+    </footer>
+
+  </div>
+
+</body>
+</html>
